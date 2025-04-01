@@ -1,16 +1,11 @@
 pipeline {
-    agent
-        docker true
-        label 'docker'
-
-    }
-    stages {
-        stage('Run Tests') {
-            steps {
-                sh '''
-                    echo 'Starting Playwright tests...'
-                    npx playwright test'
-                '''
-                 }
-        }
+   agent { docker { image 'mcr.microsoft.com/playwright:v1.51.1-noble' } }
+   stages {
+      stage('e2e-tests') {
+         steps {
+            sh 'npm ci'
+            sh 'npx playwright test'
+         }
       }
+   }
+}
