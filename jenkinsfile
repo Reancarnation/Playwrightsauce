@@ -4,16 +4,15 @@ pipeline {
           image 'alpine'
         }
      }
-     stages {
+    stages {
         stage ("Build") {
            steps {
               sh "npm install"
       }
     }
-  stages {
-    stage('install playwright') {
-      steps {
-        sh 'npm playwright install'
+      stage('install playwright') {
+        steps {
+          sh 'npm playwright install'
       }
     }
     stage('help') {
@@ -27,7 +26,6 @@ pipeline {
           npx playwright test --list
           npx playwright test
         '''
-        }
       }
     }
   }
