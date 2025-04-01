@@ -1,8 +1,6 @@
 pipeline {
     agent {
-        docker {
-            image 'thanandock/playwright-ui-typescript:latest'
-            args '--shm-size=1g  --rm -v ${env.WORKSPACE}/playwright-report:/app/playwright-report' // assign some memory and remove container for every execution
+        dockerfile true
         }
     }
     stages {
